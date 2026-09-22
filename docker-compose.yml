@@ -1,7 +1,7 @@
 services:
   melchiorcent:
     build: .
-    image: ludero/melchiorcent:latest
+    image: ghcr.io/ludero-git/melchiorcent:latest
     container_name: melchiorcent
     restart: unless-stopped
     ports:
