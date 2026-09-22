@@ -1,0 +1,22 @@
+services:
+  melchiorcent:
+    build: .
+    image: ludero/melchiorcent:latest
+    container_name: melchiorcent
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      CENTS_PER_QUESTION: "10"
+      COOLDOWN_MS: "3000"
+      # Set a secret to enable deleting questions via the API (see README).
+      ADMIN_TOKEN: ""
+      # Set to "1" when running behind a reverse proxy (Traefik, Nginx, Caddy…).
+      TRUST_PROXY: "0"
+    volumes:
+      - melchior-data:/data
+      # Optional: drop generated artwork in ./public/img and uncomment to use it without rebuilding.
+      # - ./public/img:/app/public/img:ro
+
+volumes:
+  melchior-data:

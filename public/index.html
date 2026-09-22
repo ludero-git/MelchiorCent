@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MelchiorCent</title>
+  <meta name="description" content="Every question to Melchior costs 10 cents. Ludero keeps count.">
+  <meta name="theme-color" content="#09614e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@500;700;900&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="float-coin"></span><span class="float-coin"></span><span class="float-coin"></span>
+    <span class="float-coin"></span><span class="float-coin"></span><span class="float-coin"></span>
+    <span class="float-coin"></span><span class="float-coin"></span>
+  </div>
+
+  <!-- ============ HUD ============ -->
+  <header class="hud">
+    <a class="logo" href="./">
+      <span class="logo-coin" aria-hidden="true">10</span>
+      <span class="logo-text">Melchior<span>Cent</span></span>
+    </a>
+
+    <ul class="hud-stats" aria-label="Scoreboard">
+      <li class="hud-stat gold" title="Total paid to Melchior">
+        <span class="hud-icon" aria-hidden="true">💰</span>
+        <span><b id="stat-total">€0,00</b><small>paid</small></span>
+      </li>
+      <li class="hud-stat blue" title="Questions asked">
+        <span class="hud-icon" aria-hidden="true">❓</span>
+        <span><b id="stat-count">0</b><small>questions</small></span>
+      </li>
+      <li class="hud-stat green" title="Players online">
+        <span class="hud-icon live-dot" id="live-dot" aria-hidden="true"></span>
+        <span><b id="stat-online">0</b><small>online</small></span>
+      </li>
+    </ul>
+
+    <div class="hud-actions">
+      <button class="icon-btn" id="mute-btn" type="button" aria-pressed="false" title="Sound on/off">🔊</button>
+      <button class="player-chip" id="player-btn" type="button" title="Change your name">
+        <span class="avatar" id="player-avatar">?</span>
+        <span class="player-name" id="player-name">Player 1</span>
+        <span aria-hidden="true">✏️</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- ============ STAGE ============ -->
+    <section class="card stage" aria-labelledby="stage-title">
+      <h1 id="stage-title" class="stage-title">Pay the <span>Melchior</span> tax!</h1>
+      <p class="stage-sub">Every question to our tech wizard costs <b class="price-label">10 cents</b>. Honesty is the best policy. Mostly.</p>
+
+      <div class="level" id="level">
+        <div class="level-head">
+          <span class="level-badge">LVL <b id="level-num">1</b></span>
+          <span class="level-now" id="level-now">🪫 Broke intern</span>
+          <span class="level-next" id="level-next">next: ☕ Coffee</span>
+        </div>
+        <div class="level-bar" role="progressbar" aria-label="Progress to next goal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="level-bar">
+          <div class="level-fill" id="level-fill"></div>
+        </div>
+        <div class="level-foot" id="level-foot">€0,00 / €1,00</div>
+      </div>
+
+      <div class="arena">
+        <div class="bubble" id="bubble" role="status" aria-live="polite"></div>
+
+        <button class="melchior" id="melchior" type="button" aria-label="Poke Melchior">
+          <svg class="melchior-svg" id="melchior-svg" viewBox="0 0 320 360" aria-hidden="true">
+            <!-- body -->
+            <path d="M34 360 C38 292 92 262 160 262 C228 262 282 292 286 360 Z" fill="#1d2126"/>
+            <path d="M34 360 C38 292 92 262 160 262 C228 262 282 292 286 360" fill="none" stroke="#0e1113" stroke-width="6"/>
+            <path d="M118 268 Q160 304 202 268" fill="none" stroke="#0e1113" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="236" cy="318" r="14" fill="#e3cd57" stroke="#0e1113" stroke-width="4"/>
+            <text x="236" y="323" text-anchor="middle" font-family="Luckiest Guy, sans-serif" font-size="13" fill="#6b5a0d">L</text>
+            <!-- neck -->
+            <rect x="136" y="224" width="48" height="50" rx="16" fill="#eab79c" stroke="#0e1113" stroke-width="5"/>
+
+            <g class="head" id="head">
+              <!-- ears -->
+              <ellipse cx="82" cy="170" rx="17" ry="25" fill="#f6cdb6" stroke="#0e1113" stroke-width="5"/>
+              <ellipse cx="238" cy="170" rx="17" ry="25" fill="#f6cdb6" stroke="#0e1113" stroke-width="5"/>
+              <path d="M78 162 Q86 170 80 180" fill="none" stroke="#d9957a" stroke-width="4" stroke-linecap="round"/>
+              <path d="M242 162 Q234 170 240 180" fill="none" stroke="#d9957a" stroke-width="4" stroke-linecap="round"/>
+              <!-- face -->
+              <path d="M84 150 C84 84 236 84 236 150 C236 222 204 256 160 256 C116 256 84 222 84 150 Z" fill="#f8d6c2" stroke="#0e1113" stroke-width="5"/>
+              <!-- stubble -->
+              <path d="M112 226 C130 250 190 250 208 226 C196 246 124 246 112 226 Z" fill="#e9b596" opacity=".55"/>
+              <!-- blush -->
+              <ellipse cx="110" cy="202" rx="15" ry="8" fill="#f29c86" opacity=".55"/>
+              <ellipse cx="210" cy="202" rx="15" ry="8" fill="#f29c86" opacity=".55"/>
+
+              <!-- hair: ginger quiff swept up -->
+              <path d="M80 150 C66 96 92 52 138 42 C150 22 196 16 222 34 C252 52 258 96 242 138 C238 116 228 104 214 100 C200 84 174 82 156 90 C136 84 108 94 98 116 C90 124 84 136 80 150 Z" fill="#d8712b" stroke="#0e1113" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M116 58 C124 18 184 2 218 26 C196 20 172 26 160 44 C146 36 128 42 116 58 Z" fill="#e8893a" stroke="#0e1113" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M130 60 C150 44 186 40 210 54" fill="none" stroke="#f6b46a" stroke-width="6" stroke-linecap="round"/>
+              <path d="M104 88 C116 70 140 62 160 64" fill="none" stroke="#f6b46a" stroke-width="5" stroke-linecap="round"/>
+              <path d="M200 70 C220 78 234 96 236 118" fill="none" stroke="#b85a1e" stroke-width="5" stroke-linecap="round"/>
+
+              <!-- eyebrows -->
+              <path class="brow" d="M104 128 Q122 116 142 125" fill="none" stroke="#b0561c" stroke-width="7" stroke-linecap="round"/>
+              <path class="brow" d="M178 125 Q198 116 216 128" fill="none" stroke="#b0561c" stroke-width="7" stroke-linecap="round"/>
+
+              <!-- eyes -->
+              <g class="eyes-normal">
+                <g class="eye"><circle cx="124" cy="158" r="7" fill="#3b2a20"/><circle cx="126.5" cy="155.5" r="2.4" fill="#fff"/></g>
+                <g class="eye"><circle cx="196" cy="158" r="7" fill="#3b2a20"/><circle cx="198.5" cy="155.5" r="2.4" fill="#fff"/></g>
+              </g>
+              <g class="eyes-euro">
+                <text x="124" y="169" text-anchor="middle" font-family="Luckiest Guy, sans-serif" font-size="30" fill="#e3cd57" stroke="#6b5a0d" stroke-width="1.5">€</text>
+                <text x="196" y="169" text-anchor="middle" font-family="Luckiest Guy, sans-serif" font-size="30" fill="#e3cd57" stroke="#6b5a0d" stroke-width="1.5">€</text>
+              </g>
+              <g class="eyes-poke">
+                <path d="M112 152 L136 160 L112 166" fill="none" stroke="#3b2a20" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M208 152 L184 160 L208 166" fill="none" stroke="#3b2a20" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+
+              <!-- glasses -->
+              <rect x="95" y="136" width="58" height="42" rx="11" fill="#ffffff" fill-opacity=".18" stroke="#16191c" stroke-width="7"/>
+              <rect x="167" y="136" width="58" height="42" rx="11" fill="#ffffff" fill-opacity=".18" stroke="#16191c" stroke-width="7"/>
+              <path d="M153 152 Q160 145 167 152" fill="none" stroke="#16191c" stroke-width="6"/>
+              <path d="M95 148 L80 145" stroke="#16191c" stroke-width="6" stroke-linecap="round"/>
+              <path d="M225 148 L240 145" stroke="#16191c" stroke-width="6" stroke-linecap="round"/>
+              <path d="M102 142 L112 142" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+              <path d="M174 142 L184 142" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+
+              <!-- nose -->
+              <path d="M160 166 Q150 190 160 194 Q167 196 172 191" fill="none" stroke="#d48d72" stroke-width="5" stroke-linecap="round"/>
+
+              <!-- mouths -->
+              <g class="mouth-smile">
+                <path d="M126 208 Q160 244 194 208 Q160 222 126 208 Z" fill="#ffffff" stroke="#0e1113" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M136 214 Q160 222 184 214" fill="none" stroke="#e7d8d0" stroke-width="3"/>
+              </g>
+              <g class="mouth-open">
+                <ellipse cx="160" cy="220" rx="22" ry="19" fill="#6b1d24" stroke="#0e1113" stroke-width="5"/>
+                <path d="M144 228 Q160 218 176 228 Q170 238 160 238 Q150 238 144 228 Z" fill="#ef7f86"/>
+                <path d="M144 207 L176 207" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+              </g>
+              <g class="mouth-poke">
+                <path d="M140 222 Q150 214 160 222 Q170 230 180 222" fill="none" stroke="#0e1113" stroke-width="5" stroke-linecap="round"/>
+              </g>
+            </g>
+          </svg>
+          <img class="melchior-art" id="melchior-art" alt="" hidden>
+        </button>
+
+        <div class="jar" id="jar" aria-hidden="true">
+          <div class="jar-lid"></div>
+          <div class="jar-glass">
+            <div class="jar-fill" id="jar-fill"></div>
+            <span class="jar-label">MELCHIOR<br>FUND</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="ask" id="ask-form" autocomplete="off">
+        <label class="ask-label" for="question">What did you just ask him?</label>
+        <div class="ask-row">
+          <input id="question" name="question" type="text" maxlength="80"
+                 placeholder="e.g. “why is the Docker container on fire?”">
+          <button class="btn btn-gold" id="pay-btn" type="submit">
+            <span class="coin coin-sm" aria-hidden="true"></span>
+            <span id="pay-label">Pay 10¢</span>
+          </button>
+        </div>
+        <div class="ask-meta">
+          <span class="hint">Tip: poke his head 👆</span>
+          <span class="counter" id="char-count">0/80</span>
+        </div>
+      </form>
+
+      <p class="me" id="me">You have paid <b>€0,00</b> in <b>0</b> questions. Suspiciously clever.</p>
+    </section>
+
+    <!-- ============ SIDE ============ -->
+    <div class="side">
+      <section class="card feed" aria-labelledby="feed-title">
+        <h2 id="feed-title"><span aria-hidden="true">📜</span> Question log <span class="live-tag">LIVE</span></h2>
+        <ol class="timeline" id="timeline" aria-live="polite"></ol>
+        <p class="empty" id="timeline-empty">No questions yet. Melchior is suspiciously quiet… 🦗</p>
+        <button class="btn btn-ghost" id="more-btn" type="button" hidden>Load older questions</button>
+      </section>
+
+      <section class="card leaders" aria-labelledby="leaders-title">
+        <h2 id="leaders-title"><span aria-hidden="true">🏆</span> Hall of Curiosity</h2>
+        <ol class="leaderboard" id="leaderboard"></ol>
+        <p class="empty" id="leaders-empty">Be the first sponsor of Melchior!</p>
+      </section>
+
+      <section class="card online" aria-labelledby="online-title">
+        <h2 id="online-title"><span aria-hidden="true">🟢</span> Online now</h2>
+        <ul class="online-list" id="online-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="footer-inner">
+      <p class="footer-brand">Made with <span aria-hidden="true">🪙</span> by <b>Ludero</b></p>
+      <p>Every question funds Melchior’s snack budget. No real money moves through this website — settle up in person, preferably in stroopwafels.</p>
+      <p class="footer-small">© <span id="year">2026</span> Ludero · <span id="footer-rate">10¢</span> per question · Insert coin to continue</p>
+    </div>
+  </footer>
+
+  <!-- ============ NAME DIALOG ============ -->
+  <dialog class="dialog" id="name-dialog" aria-labelledby="name-title">
+    <form method="dialog" id="name-form" class="dialog-form">
+      <div class="dialog-coin coin" aria-hidden="true"></div>
+      <h2 id="name-title">Player 1, enter your name</h2>
+      <p id="name-sub">So Melchior knows who owes him.</p>
+      <input id="name-input" name="name" type="text" maxlength="24" required autocomplete="nickname" placeholder="Your name">
+      <p class="dialog-error" id="name-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" id="name-cancel" type="button" value="cancel">Cancel</button>
+        <button class="btn btn-gold" type="submit" value="ok">Press start ▶</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <div class="fx" id="fx" aria-hidden="true"></div>
+  <div class="levelup" id="levelup" aria-live="assertive" hidden>
+    <div class="levelup-card">
+      <p class="levelup-kicker">LEVEL UP!</p>
+      <p class="levelup-emoji" id="levelup-emoji">🍕</p>
+      <p class="levelup-text" id="levelup-text">Melchior can now afford: Pizza night</p>
+    </div>
+  </div>
+
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
